@@ -1,5 +1,7 @@
 JoyDrill – Ethical Crypto Mining for Good Causes
 
+Our website is here https://garbagebuild.github.io/
+
 JoyDrill is an Electron-based mining app that donates cryptocurrency earnings to churches, charities, and shelters. This repository contains the source code for the JoyDrill desktop application.
 
 
