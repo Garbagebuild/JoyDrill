@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mining Meals</title>
+  <style>
+    body {
+      background: #f4f1ff;
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+      padding: 20px;
+      margin: 0;
+    }
+
+    /* Header with logo and text */
+    header {
+      background-color: #6a0dad;
+      color: white;
+      padding: 1rem 20px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      border-radius: 12px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-container img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .logo-container h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    h1 {
+      color: #7a00cc;
+      margin-top: 0;
+    }
+
+    #console {
+      background: #e6e0f8;
+      border: 2px solid #a684d9;
+      padding: 10px;
+      height: 200px;
+      overflow-y: scroll;
+      white-space: pre-wrap;
+      margin-top: 10px;
+    }
+
+    #controls {
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #7a00cc;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      margin-right: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #5e0099;
+    }
+
+    #cpu-slider {
+      width: 300px;
+    }
+
+    #hashrate,
+    #meals {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #5e0099;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="logo.png" alt="JoyDrill Logo" />
+      <h2>JoyDrill</h2>
+    </div>
+  </header>
+
+  <h1>Mining Meals 🍽️</h1>
+
+  <div id="controls">
+    <button id="startBtn">Start Mining</button>
+    <button id="stopBtn">Stop Mining</button>
+    <label for="cpu-slider">CPU Limit: <span id="cpuLabel">70%</span></label>
+    <input type="range" id="cpu-slider" min="1" max="70" value="70" />
+  </div>
+
+  <div id="meals">Meals Generated: 0</div>
+  <div id="hashrate">Hashrate: 0 H/s</div>
+
+  <div id="console">Console output will appear here...</div>
+
+  <script>
+    const startBtn = document.getElementById('startBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const consoleDiv = document.getElementById('console');
+    const cpuSlider = document.getElementById('cpu-slider');
+    const cpuLabel = document.getElementById('cpuLabel');
+    const mealsDiv = document.getElementById('meals');
+    const hashrateDiv = document.getElementById('hashrate');
+
+    let meals = 0;
+
+    cpuSlider.addEventListener('input', () => {
+      cpuLabel.textContent = `${cpuSlider.value}%`;
+    });
+
+    startBtn.addEventListener('click', () => {
+      const cpuLimit = parseInt(cpuSlider.value, 10);
+      window.electronAPI.startMiner(cpuLimit);
+      logToConsole(`Starting miner with CPU limit ${cpuLimit}%...`);
+    });
+
+    stopBtn.addEventListener('click', () => {
+      window.electronAPI.stopMining();
+      logToConsole("Stopping miner...");
+    });
+
+    function logToConsole(text) {
+      consoleDiv.textContent += text + '\n';
+      consoleDiv.scrollTop = consoleDiv.scrollHeight;
+
+      const hashRateMatch = text.match(/(\d+\.\d+|\d+)\s*H\/s/);
+      if (hashRateMatch) {
+        const hashrate = parseFloat(hashRateMatch[1]);
+        hashrateDiv.textContent = `Hashrate: ${hashrate} H/s`;
+
+        const mealsGained = Math.floor(hashrate / 100);
+        if (mealsGained > 0) {
+          meals += mealsGained;
+          mealsDiv.textContent = `Meals Generated: ${meals}`;
+        }
+      }
+    }
+
+    window.electronAPI.receiveMinerLog((_event, data) => {
+      logToConsole(data);
+    });
+
+    window.electronAPI.receiveMinerStopped(() => {
+      logToConsole("Miner process exited.");
+    });
+  </script>
+</body>
+</html>
