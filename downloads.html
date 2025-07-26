@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Downloads - Garbage Build</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #eee;
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    a {
+      color: #9b59b6; /* purple highlight */
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    header {
+      margin-bottom: 40px;
+    }
+    h1 {
+      font-weight: normal;
+    }
+    nav a {
+      margin-right: 20px;
+      font-weight: bold;
+    }
+    .download-list {
+      list-style: none;
+      padding: 0;
+      max-width: 600px;
+    }
+    .download-list li {
+      background-color: #1f1f1f;
+      margin-bottom: 15px;
+      padding: 15px 20px;
+      border-radius: 6px;
+      box-shadow: 0 0 6px rgba(155, 89, 182, 0.4);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .download-list a.button {
+      background-color: #9b59b6;
+      padding: 8px 14px;
+      border-radius: 4px;
+      color: #fff;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    .download-list a.button:hover {
+      background-color: #7d3c98;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html">&larr; Home</a>
+  </nav>
+  <h1>Downloads</h1>
+  <p>Here you can find all the latest downloads.</p>
+</header>
+
+<ul class="download-list">
+  <li>
+    <span>Example Software v1.0</span>
+    <a class="button" href="downloads/example-software-v1.zip" download>Download</a>
+  </li>
+  <li>
+    <span>Sample Document PDF</span>
+    <a class="button" href="downloads/sample-document.pdf" download>Download</a>
+  </li>
+  <li>
+    <span>Game Assets Pack</span>
+    <a class="button" href="downloads/game-assets.zip" download>Download</a>
+  </li>
+</ul>
+
+</body>
+</html>
