@@ -35,16 +35,8 @@ Uses a bundled version of XMRig for Monero mining
 
 CPU usage is adjustable via the app’s slider control
 
-100% of mining rewards go to vetted charities
+mining rewards go to vetted charities.
 
-REPO STRUCTURE
-
-main.js - Electron main process
-preload.js - Preload scripts for renderer
-index.html - Main user interface
-package.json - Project configuration
-build/ - Icons & branding
-config.json - Mining config (editable)
 
 CONTRIBUTING
 
