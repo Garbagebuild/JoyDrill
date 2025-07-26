@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ethical Mining for Charity</title>
+  <title>JoyDrill - Ethical Mining for Charity</title>
+  <link rel="icon" type="image/png" href="logo.png">
   <style>
     body {
       margin: 0;
@@ -13,29 +14,60 @@
     }
 
     header {
-      background-color: #6a0dad; /* purple */
+      background-color: #6a0dad;
       color: white;
-      padding: 1rem;
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
+    /* Logo + Title container */
+    .logo-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-title img {
+      height: 50px;
+      width: auto;
+    }
+
+    .logo-title h2 {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+    }
+
     nav a {
       color: white;
-      margin: 0 1rem;
       text-decoration: none;
       font-weight: bold;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
     }
 
     nav a:hover {
       text-decoration: underline;
     }
 
+    nav a.current {
+      background-color: #7e3fbf; /* lighter purple highlight */
+      box-shadow: none;
+      text-decoration: none;
+    }
+
     .container {
       max-width: 900px;
       margin: 2rem auto;
-      padding: 1rem;
+      padding: 1rem 2rem;
       background: white;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -43,6 +75,7 @@
 
     h1 {
       color: #6a0dad;
+      margin-top: 0;
     }
 
     .highlight {
@@ -55,15 +88,19 @@
 </head>
 <body>
   <header>
-    <h2>Ethical Mining</h2>
+    <div class="logo-title">
+      <img src="logo.png" alt="JoyDrill Logo">
+      <h2>JoyDrill</h2>
+    </div>
+
     <nav>
+      <a href="index.html" class="current">Home</a>
       <a href="downloads.html">Downloads</a>
       <a href="about.html">About Us</a>
       <a href="contact.html">Contact</a>
       <a href="foundation.html">Homeless Foundation</a>
     </nav>
   </header>
-
 
   <div class="container">
     <h1>Welcome to Ethical Mining for Charity</h1>
@@ -87,8 +124,6 @@
     <p>
       Ready to start making a difference? Visit the Downloads section to get started.
     </p>
-
-</section>
-</div>
+  </div>
 </body>
 </html>
